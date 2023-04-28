@@ -10,7 +10,7 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO
 )
 
@@ -27,7 +27,7 @@ def search(update, context):
     ticker = context.args[0]
 
     stock = YF.Stock(ticker)
-    update.message.reply_text(f" Getting Stock Details of :  {ticker} . Please wait... ")
+    update.message.reply_text(f" Getting Stock Details of :  {ticker} \n Please wait... ")
     stock.get_data()
     if stock.data is None:
         update.message.reply_text(f" Failed to get Data for {ticker} ")
