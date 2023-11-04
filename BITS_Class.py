@@ -8,7 +8,6 @@ import webbrowser as wb
 import telegram
 from dotenv import load_dotenv
 import os
-import YFinance as YF
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 CHAT_ID = 727464642
@@ -22,16 +21,16 @@ bot = telegram.Bot(token=TelegramBotCredential)
 
 
 
-advNetwork =   'https://teams.microsoft.com/l/meetup-join/19%3ae557afd8241a4f46921e12acdf373443%40thread.tacv2/1681035716016?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
-cloudComp =    'https://teams.microsoft.com/l/meetup-join/19%3a569baddaad0e402e9c5a429af87ca48c%40thread.tacv2/1681035828532?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
-itInfra =      'https://teams.microsoft.com/l/meetup-join/19%3ae8643548da9349b39364f50d485c1a96%40thread.tacv2/1681035949968?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
-webTech =      'https://teams.microsoft.com/l/meetup-join/19%3a52704304e0aa4bf596aaa276eac1c398%40thread.tacv2/1681036071776?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+infraMgmnt =  'https://teams.microsoft.com/l/meetup-join/19%3a5e340aae3bf14213bb31daf255096f17%40thread.tacv2/1694588263781?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+dataCentre =    'https://teams.microsoft.com/l/meetup-join/19%3a7a46f3f728064bb293adaff0c07c19d5%40thread.tacv2/1694587853998?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+portableDevices =      'https://teams.microsoft.com/l/meetup-join/19%3ae9de66ec32a949069ec5746aded8e987%40thread.tacv2/1694589002518?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+telecom =      'https://teams.microsoft.com/l/meetup-join/19%3a6c44c3e86abd4ea2b1e83f58da6167cf%40thread.tacv2/1694589373731?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
 
 lst=[
-     [  itInfra, 855, 1035],
-     [ cloudComp, 1055, 1230],
-     [  advNetwork, 1355, 1530],
-     [ webTech, 1555, 1735]
+     [ infraMgmnt  , 855, 1035],
+     [ dataCentre, 1055, 1230],
+     [  portableDevices, 1355, 1530],
+     [  telecom, 1555, 1735]
      ]
 
 
@@ -48,8 +47,12 @@ while sunday:
     today = datetime.now().weekday()
     if today != 6:  # Sunday is represented by 6
         print("Today is not Sunday.")
-        bot.send_message(chat_id=CHAT_ID, text=f"sleeping for {600} secs. Today is not Sunday.")
-        time.sleep(600)
+        a = input ("Manual Skip ?  Press Y :: ")
+        if a.lower() == 'y':
+            sunday = False
+        else:
+            bot.send_message(chat_id=CHAT_ID, text=f"sleeping for {600} secs. Today is not Sunday.")
+            time.sleep(600)
     else:
         print("Today is Sunday.")
         
@@ -78,11 +81,14 @@ for lecture  in lst:
             time.sleep(1)
             pyautogui.press('enter')
             time.sleep(5)
-            # Take a screenshot
-            screenshot = pyautogui.screenshot()
-            # Save the screenshot as a file
-            screenshot.save('screenshot.png')
-            bot.send_photo(chat_id=CHAT_ID, photo=open('screenshot.png', 'rb'), caption= "Class Joined")
+            try:
+                # Take a screenshot
+                screenshot = pyautogui.screenshot()
+                # Save the screenshot as a file
+                screenshot.save('screenshot.png')
+                bot.send_photo(chat_id=CHAT_ID, photo=open('screenshot.png', 'rb'), caption= "Class Joined")
+            except Exception as e:
+                bot.send_message(chat_id=CHAT_ID, text=f"Error sending class joining screenshot {str(e)} ")
              
         #Program run before the selected class timings     
         elif   (datetime.now().hour*100 + datetime.now().minute < lecture[1]):
@@ -99,12 +105,14 @@ for lecture  in lst:
             print(f"sleeping for {time_left*10} secs")
             if time_left > 10:
                 time.sleep(600)       #class joined, sleeping for the class period
-                
-                # Take a screenshot
-                screenshot = pyautogui.screenshot()
-                # Save the screenshot as a file
-                screenshot.save('screenshot.png')
-                bot.send_photo(chat_id=CHAT_ID, photo=open('screenshot.png', 'rb'))
+                try:
+                    # Take a screenshot
+                    screenshot = pyautogui.screenshot()
+                    # Save the screenshot as a file
+                    screenshot.save('screenshot.png')
+                    bot.send_photo(chat_id=CHAT_ID, photo=open('screenshot.png', 'rb'))
+                except Exception as e:
+                    bot.send_message(chat_id=CHAT_ID, text=f"Error sending class in progress screenshot {str(e)} ")
             else:
                 time.sleep(time_left*30)
             
@@ -114,10 +122,13 @@ for lecture  in lst:
                 time.sleep(3)
               #  pyautogui.hotkey('alt','f4')
                 time.sleep(3)
-                screenshot = pyautogui.screenshot()
-                # Save the screenshot as a file
-                screenshot.save('screenshot.png')
-                bot.send_photo(chat_id=CHAT_ID, photo=open('screenshot.png', 'rb'), caption= "Class Left")
-                break;
+                try:
+                    screenshot = pyautogui.screenshot()
+                    # Save the screenshot as a file
+                    screenshot.save('screenshot.png')
+                    bot.send_photo(chat_id=CHAT_ID, photo=open('screenshot.png', 'rb'), caption= "Class Left")
+                except Exception as e:
+                    bot.send_message(chat_id=CHAT_ID, text=f"Error sending Leaving screenshot {str(e)} ")
+                break
 
                 
