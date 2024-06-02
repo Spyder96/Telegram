@@ -21,16 +21,16 @@ bot = telegram.Bot(token=TelegramBotCredential)
 
 
 
-infraMgmnt =  'https://teams.microsoft.com/l/meetup-join/19%3a5e340aae3bf14213bb31daf255096f17%40thread.tacv2/1694588263781?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
-dataCentre =    'https://teams.microsoft.com/l/meetup-join/19%3a7a46f3f728064bb293adaff0c07c19d5%40thread.tacv2/1694587853998?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
-portableDevices =      'https://teams.microsoft.com/l/meetup-join/19%3ae9de66ec32a949069ec5746aded8e987%40thread.tacv2/1694589002518?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
-telecom =      'https://teams.microsoft.com/l/meetup-join/19%3a6c44c3e86abd4ea2b1e83f58da6167cf%40thread.tacv2/1694589373731?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+middleWare =  'https://teams.microsoft.com/l/meetup-join/19%3a3949a1cca3aa44d8bed0ba0f3540b788%40thread.tacv2/1709630841512?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+wireless =    'https://teams.microsoft.com/l/meetup-join/19%3a5b53208a88ac4601aae95ba449ff6ca1%40thread.tacv2/1709631240952?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+devOps =      'https://teams.microsoft.com/l/meetup-join/19%3a79aa6767254e42d593049eea5eea6b8e%40thread.tacv2/1709631494103?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
+network =      'https://teams.microsoft.com/l/meetup-join/19%3afd3793082f0644cb8a284ee9f6a1ddfb%40thread.tacv2/1709631765991?context=%7b%22Tid%22%3a%22e24ac094-efd8-4a6b-98d5-a129b32a8c9a%22%2c%22Oid%22%3a%22b86d8394-7d7f-455e-b7ea-7416d0412e1f%22%7d'
 
 lst=[
-     [ infraMgmnt  , 855, 1035],
-     [ dataCentre, 1055, 1230],
-     [  portableDevices, 1355, 1530],
-     [  telecom, 1555, 1735]
+     [ middleWare  , 855, 1035],
+     [ wireless, 1055, 1230],
+     [  devOps, 1355, 1530],
+     [  network, 1555, 1735]
      ]
 
 
